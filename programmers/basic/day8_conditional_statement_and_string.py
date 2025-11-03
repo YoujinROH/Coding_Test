@@ -2,7 +2,7 @@
 # [문제 1] 간단한 논리 연산
 # https://school.programmers.co.kr/learn/courses/30/lessons/181917
 # 📘 설명: boolean 변수 x1, x2, x3, x4가 매개변수로 주어질 때, 다음의 식의 true/false를 return 하는 solution 함수를 작성하는 문제 
-# 💡 boolean 선언할 때, True, False로 선언 혹은 0, 1도 가능 
+# 💡 배운 점: boolean 선언할 때, True, False로 선언 혹은 0, 1도 가능 
 # -------------------------------------------------
 
 def problem_1(x1, x2, x3, x4):
@@ -17,28 +17,48 @@ def problem_1(x1, x2, x3, x4):
     return answer
 
 # -------------------------------------------------
-# [문제 2] 주사위 게임 3 (progress)
-# https://school.programmers.co.kr/learn/courses/30/lessons/181921
-# 📘 설명: 정수 l과 r이 주어졌을 때, l 이상 r이하의 정수 중에서 숫자 "0"과 "5"로만 이루어진 모든 정수를 오름차순으로 저장한 배열을 return 하는 solution 함수를 완성하는 문제 
-# 💡 배운 점: if all(ch in ['0', '5'] for ch in str(i)) 이런식으로도 접근 가능, 또한 if len(result)==0 도 if not result로 변경 가능 
+# [문제 2] 주사위 게임 3 
+# https://school.programmers.co.kr/learn/courses/30/lessons/181916
+# 📘 설명: 네 주사위를 굴렸을 때 나온 숫자가 정수 매개변수 a, b, c, d로 주어질 때, 얻는 점수를 return 하는 solution 함수를 작성하는 문제 
+# 💡 배운 점: 딕셔너리 접근법 복습하기
 # -------------------------------------------------
 
-def problem_2(l, r):
-    result = [] 
-    for i in range(l, r+1):
-        for j in range(len(str(i))):
-            if str(i)[j]=="0" or str(i)[j]=="5":
-                if j==len(str(i))-1:
-                    result.append(i)  
-            else:
-                j=len(str(i))-1
-                break
-    if len(result)==0:
-        result.append(-1)
-    return result
+def problem_2(a, b, c, d):
+    dice_num = [a, b, c, d]
+    dice_count = {}
+    
+    for i in dice_num:
+        if i in dice_count:
+            dice_count[i] += 1
+        else:
+            dice_count[i] = 1
+    
+    keys = list(dice_count.keys())
+    values = list(dice_count.values())
+    
+    if len(dice_count) == 1:
+        p = keys[0]
+        return 1111 * p
+    
+    elif len(dice_count) == 2:
+        if 3 in values:
+            p = keys[values.index(3)]
+            q = keys[values.index(1)]
+            return (10 * p + q) ** 2
+        else:
+            p, q = keys
+            return (p + q) * abs(p - q)
+    
+    elif len(dice_count) == 3:
+        p = keys[values.index(2)]
+        q, r = [k for k in keys if k != p]
+        return q * r
+    
+    else:
+        return min(dice_num)
   
 # -------------------------------------------------
-# [문제 3] 글자 이어 붙여 문자열 만들기 
+# [문제 3] 글자 이어 붙여 문자열 만들기 (progress)
 # https://school.programmers.co.kr/learn/courses/30/lessons/181920
 # 📘 설명: 정수 start_num와 end_num가 주어질 때, start_num부터 end_num까지의 숫자를 차례로 담은 리스트를 return하도록 solution 함수를 완성하는 문제  
 # 💡 배운 점: 리스트에 요소 추가할 때 list.append() append 함수 활용하기 

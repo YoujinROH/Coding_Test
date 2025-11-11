@@ -1,98 +1,84 @@
 # -------------------------------------------------
 # [문제 1] 배열의 길이를 2의 거듭제곱으로 만들기   
-# https://school.programmers.co.kr/learn/courses/30/lessons/181862
-# 📘 설명: 문자열 myStr이 주어졌을 때 위 예시와 같이 "a", "b", "c"를 사용해 나눠진 문자열을 순서대로 저장한 배열을 return 하는 solution 함수를 완성하는 문제 
-# 💡 배운 점: 리스트안에 값이 없거나 문자열이 공백일 때, if not 리스트 or if not 문자열 사용하면 됨. 반대는 if 리스트 or if 문자열 
+# https://school.programmers.co.kr/learn/courses/30/lessons/181857
+# 📘 설명: arr의 길이가 2의 정수 거듭제곱이 되도록 arr 뒤에 정수 0을 추가하려고 할 때, arr에 최소한의 개수로 0을 추가한 배열을 return 하는 solution 함수를 작성하는 문제 
+# 💡 배운 점: [0] * n 이런식으로 [0,0,0,0,...] 리스트를 만들어갈 수 있음. 리스트도 문자열처럼 += 로 합칠 수 있음. append 대체로 활용 가능.
 # -------------------------------------------------
 
-def problem_1(myStr):
-    answer = []
-    tmp = ''
-    for i in range(len(myStr)):
-        if myStr[i] == 'a' or myStr[i] == 'b' or myStr[i] == 'c':
-            if tmp:
-                answer.append(tmp)
-                tmp=''
-        else:
-            tmp += myStr[i]
-            if i==len(myStr)-1:
-                answer.append(tmp)
-    if not answer:
-        answer.append('EMPTY')
-    return answer
+def problem_1(arr):
+    answer = 1
+    n = len(arr)
+    
+    while (answer < n):
+        answer*=2
+    
+    arr += [0] * (answer - n)
+    return arr
   
 # -------------------------------------------------
 # [문제 2] 배열 비교하기  
-# https://school.programmers.co.kr/learn/courses/30/lessons/181861
-# 📘 설명: 양의 정수 배열 arr가 매개변수로 주어질 때, arr의 앞에서부터 차례대로 원소를 보면서 원소가 a라면 X의 맨 뒤에 a를 a번 추가하는 일을 반복한 뒤의 배열 X를 return 하는 solution 함수를 작성하는 문제  
-# 💡 배운 점: 이전에 많이 나왔던 유형 
+# https://school.programmers.co.kr/learn/courses/30/lessons/181856
+# 📘 설명: 두 정수 배열 arr1과 arr2가 주어질 때, 위에서 정의한 배열의 대소관계에 대하여 arr2가 크다면 -1, arr1이 크다면 1, 두 배열이 같다면 0을 return 하는 solution 함수를 작성하는 문제 
+# 💡 배운 점: 리스트 안의 요소의 합을 구할 때는 sum() 함수 활용하기 
 # -------------------------------------------------
 
-def problem_2(arr):
-    answer = []
-    for num in arr:
-        for i in range(num):
-            answer.append(num)
-    return answer
+def problem_2(arr1, arr2):
+    if len(arr1)!=len(arr2):
+        if len(arr1) > len(arr2):
+            return 1
+        else:
+            return -1
+    else:
+        if sum(arr1) > sum(arr2):
+            return 1
+        elif sum(arr1) < sum(arr2):
+            return -1
+        else:
+            return 0
   
 # -------------------------------------------------
 # [문제 3] 문자열 묶기 
-# https://school.programmers.co.kr/learn/courses/30/lessons/181860
-# 📘 설명: 길이가 같은 정수 배열 arr과 boolean 배열 flag가 매개변수로 주어질 때, flag를 차례대로 순회하며 flag[i]가 true라면 X의 뒤에 arr[i]를 arr[i] × 2 번 추가하고, flag[i]가 false라면 X에서 마지막 arr[i]개의 원소를 제거한 뒤 X를 return 하는 solution 함수를 작성하는 문제   
-# 💡 배운 점: 리스트 마지막 요소 뽑아서 제거할 때는 pop() 함수가 유용함. 굳이 새 변수에 안넣어줘도 동작하는 함수 
+# https://school.programmers.co.kr/learn/courses/30/lessons/181855
+# 📘 설명: strArr의 원소들을 길이가 같은 문자열들끼리 그룹으로 묶었을 때 가장 개수가 많은 그룹의 크기를 return 하는 solution 함수를 완성하는 문제 
+# 💡 배운 점: 비교 연산자 == 랑 대입 연산자 = 헷갈리지 않기. 딕셔너리 밸류값을 뽑으려면 dict.values() 활용하기 
 # -------------------------------------------------
 
-def problem_3(arr, flag):
-    answer = []
-    for i in range(len(flag)):
-        if flag[i]==True:
-            for j in range(arr[i]*2):
-                answer.append(arr[i])
+def problem_3(strArr):
+    answer = {}
+    for word in strArr:
+        if len(word) not in answer:
+            answer[len(word)] = 1
         else:
-            for k in range(arr[i]):
-                answer.pop()
-    return answer
+            answer[len(word)] += 1
+    return max(answer.values())
     
 # -------------------------------------------------
 # [문제 4] 배열의 길이에 따라 다른 연산하기 
-# https://school.programmers.co.kr/learn/courses/30/lessons/181859
-# 📘 설명: 작업을 마친 후 만들어진 stk을 return 하는 solution 함수를 완성하는 문제 
-# 💡 배운 점: 리스트의 맨 마지막 요소에 접근하려면 list[-1]로 진행 
+# https://school.programmers.co.kr/learn/courses/30/lessons/181854
+# 📘 설명: arr의 길이가 홀수라면 arr의 모든 짝수 인덱스 위치에 n을 더한 배열을, arr의 길이가 짝수라면 arr의 모든 홀수 인덱스 위치에 n을 더한 배열을 return 하는 solution 함수를 작성하는 문제 
+# 💡 배운 점: 인덱스 기준 짝수이면 0, 2, 4,... 인덱스를 의미 
 # -------------------------------------------------
 
-def problem_4(arr): 
-    stk = []
-    i = 0
-    while (i < len(arr)):
-        if not stk:
-            stk.append(arr[i])
-            i+=1
-        elif stk and stk[-1]==arr[i]:
-            stk.pop()
-            i+=1
-        elif stk and stk[-1]!=arr[i]:
-            stk.append(arr[i])
-            i+=1
-    if not stk:
-        stk.append(-1)
-    return stk
+def problem_4(arr, n):
+    if len(arr)%2!=0:
+        for i in range(len(arr)):
+            if i%2==0:
+                arr[i]+=n
+    else:
+        for i in range(len(arr)):
+            if i%2!=0:
+                arr[i]+=n          
+    return arr
   
 # -------------------------------------------------
 # [문제 5] 뒤에서 5등까지  
-# https://school.programmers.co.kr/learn/courses/30/lessons/181858
-# 📘 설명: 정수 배열 arr가 주어지고 문제에서의 무작위의 수는 arr에 저장된 순서대로 주어질 예정이라고 했을 때, 완성될 배열을 return 하는 solution 함수를 완성하는 문제 
-# 💡 배운 점: list에서 유니크한 원소를 뽑아내기에는 set()이 편하지만 set 함수는 순서를 고려하지 않으므로 유의해야함 
+# https://school.programmers.co.kr/learn/courses/30/lessons/181853
+# 📘 설명: num_list에서 가장 작은 5개의 수를 오름차순으로 담은 리스트를 return하도록 solution 함수를 완성하는 문제 
+# 💡 배운 점: sort() 함수는 반환값이 None이므로 num_list.sort()[:5] 이런식으로 바로 정렬과 인덱싱은 동시에는 불가능 
 # -------------------------------------------------
 
-def problem_5(arr, k):
-    answer = []
-    for num in arr:
-        if num not in answer:
-            answer.append(num)
-        if len(answer)==k:
-            break
-    if len(answer)<k:
-        for i in range(k-len(answer)):
-            answer.append(-1)
+def problem_5(num_list):
+    num_list.sort()
+    return num_list[:5]
     return answer
   

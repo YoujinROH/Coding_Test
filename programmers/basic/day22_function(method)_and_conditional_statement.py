@@ -16,7 +16,7 @@ def problem_1(arr):
     return arr
   
 # -------------------------------------------------
-# [문제 2] 두 수의 합 
+# [문제 2] 두 수의 합 (progress)
 # https://school.programmers.co.kr/learn/courses/30/lessons/181856
 # 📘 설명: 두 정수 배열 arr1과 arr2가 주어질 때, 위에서 정의한 배열의 대소관계에 대하여 arr2가 크다면 -1, arr1이 크다면 1, 두 배열이 같다면 0을 return 하는 solution 함수를 작성하는 문제 
 # 💡 배운 점: 리스트 안의 요소의 합을 구할 때는 sum() 함수 활용하기 

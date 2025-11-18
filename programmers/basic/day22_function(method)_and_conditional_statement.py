@@ -53,7 +53,7 @@ def problem_3(strArr):
     return max(answer.values())
     
 # -------------------------------------------------
-# [문제 4] 배열의 원소 삭제하기 
+# [문제 4] 배열의 원소 삭제하기 (progress)
 # https://school.programmers.co.kr/learn/courses/30/lessons/181854
 # 📘 설명: arr의 길이가 홀수라면 arr의 모든 짝수 인덱스 위치에 n을 더한 배열을, arr의 길이가 짝수라면 arr의 모든 홀수 인덱스 위치에 n을 더한 배열을 return 하는 solution 함수를 작성하는 문제 
 # 💡 배운 점: 인덱스 기준 짝수이면 0, 2, 4,... 인덱스를 의미 

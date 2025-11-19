@@ -71,7 +71,7 @@ def problem_4(arr, n):
     return arr
   
 # -------------------------------------------------
-# [문제 5] 부분 문자열인지 확인하기  
+# [문제 5] 부분 문자열인지 확인하기  (progress)
 # https://school.programmers.co.kr/learn/courses/30/lessons/181853
 # 📘 설명: num_list에서 가장 작은 5개의 수를 오름차순으로 담은 리스트를 return하도록 solution 함수를 완성하는 문제 
 # 💡 배운 점: sort() 함수는 반환값이 None이므로 num_list.sort()[:5] 이런식으로 바로 정렬과 인덱싱은 동시에는 불가능 

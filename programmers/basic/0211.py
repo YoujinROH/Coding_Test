@@ -29,51 +29,45 @@ def solution2(n):
     return answer
   
 # -------------------------------------------------
-# [문제 3] x만큼 간격이 있는 n개의 숫자 
-# https://school.programmers.co.kr/learn/courses/30/lessons/12954
-# 📘 설명: 함수 solution은 정수 x와 자연수 n을 입력 받아, x부터 시작해 x씩 증가하는 숫자를 n개 지니는 리스트를 리턴해야 할 때, 제한 조건을 보고 조건을 만족하는 함수, solution을 완성하는 문제 
-# 💡 배운 점: range 범위, 값 변화량 꼼꼼히 확인하기 
+# [문제 3] 하샤드 
+# https://school.programmers.co.kr/learn/courses/30/lessons/12947
+# 📘 설명: 자연수 x를 입력받아 x가 하샤드 수인지 아닌지 검사하는 함수, solution을 완성하는 문제 
+# 💡 배운 점: 기본 문제 int형 str형 잘 바뀌었는지 꼼꼼히 확인할 것 
 # -------------------------------------------------
 
-def solution3(x, n):
-    answer = []
-    answer.append(x)
-    tmp = x
-    for i in range(n-1):
-        tmp += x
-        answer.append(tmp)
+def solution3(x):
+    answer = True
+    tmp = 0
+    for i in range(len(str(x))):
+        tmp += int(str(x)[i])
+    if x%tmp != 0:
+        answer = False
     return answer
     
 # -------------------------------------------------
-# [문제 4] 나머지가 1이 되는 수 찾기   
-# https://school.programmers.co.kr/learn/courses/30/lessons/87389
-# 📘 설명: n을 x로 나눈 나머지가 1이 되도록 하는 가장 작은 자연수 x를 return 하도록 solution 함수를 완성하는 문제 
-# 💡 배운 점: 1로 나누면 무슨 수든 나머지가 0이되므로, 2부터 시작해서 조건 확인하기  
+# [문제 4] 정수 제곱근 판별   
+# https://school.programmers.co.kr/learn/courses/30/lessons/12934
+# 📘 설명: n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하는 문제 
+# 💡 배운 점: 제곱근은 n ** 0.5 하면 되고, 정수부분? 몫 반환 형태가 아니라 전체 계산으로 소수점으로 나옴(딱 안 떨어지는 연산의 경우) 
 # -------------------------------------------------
 
 def solution4(n):
-    x=2
-    while((n-1)%x!=0):
-        x+=1
-    return x
+    tmp = n ** 0.5 
+    if tmp % 1 != 0:
+        return -1
+    else:
+        return (tmp+1)**2
   
 # -------------------------------------------------
-# [문제 5] 문자열을 정수로 바꾸기   
-# https://school.programmers.co.kr/learn/courses/30/lessons/12925
-# 📘 설명: 문자열 s를 숫자로 변환한 결과를 반환하는 함수, solution을 완성하는 문제  
-# 💡 배운 점: 문제 꼼꼼히 잘 읽기. 예시에서 표현되지 않는 조건이 있을 수 있음 
+# [문제 5] 자연수 뒤집어 배열로 만들기    
+# https://school.programmers.co.kr/learn/courses/30/lessons/12932
+# 📘 설명: 자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴하는 문제  
+# 💡 배운 점: 반복문을 step을 -1로 하고 싶으면 꼭 stop을 명시해주기 
 # -------------------------------------------------
 
-def solution5(s):
-    answer = 0
-    if s[0] == '-':
-        for i in range(1, len(s)):
-            answer -= int(s[i])*(10**(len(s)-i-1))
-    elif s[0] == '+':
-         for i in range(1, len(s)):
-            answer += int(s[i])*(10**(len(s)-i-1))     
-    else:
-        for i in range(0, len(s)):
-            answer += int(s[i])*(10**(len(s)-i-1))   
+def solution5(n):
+    answer = []
+    for i in range(len(str(n))-1,-1,-1):
+        answer.append(int(str(n)[i]))
     return answer
-    return answer
+    
